@@ -1,5 +1,5 @@
 {
-    "id": "Pth-Vocation",
+    "id": "pth",
     "title": "Princess the Hopeful: Vocation Edition",
     "description": "A port of the Princess the Hopeful: Vocation Edition TTRPG to foundry",
     "version": "1.0.0",
@@ -18,7 +18,7 @@
     "packs": [{
         "name": "charms",
         "label": "Charms",
-        "system":"PtH-Vocation",
+        "system":"pth",
         "type": "Item",
         "path": "packs/charms.db"
     }],
@@ -31,8 +31,8 @@
         "Item": {
             "charm": {
                 "label": "Charm",
-                "sheetClass": "PtH-Vocation.CharmSheet",
-                "documentClass":"PtH-Vocation.CharmDocument"
+                "sheetClass": "pth.CharmSheet",
+                "documentClass":"pth.CharmDocument"
             }
         }
     },
@@ -43,7 +43,7 @@
         "units": "yd"
     },
     "url": "https://git.kinejames.net/pkwiatek6/pth-foundry",
-    "manifest": "https://git.kinejames.net/pkwiatek6/pth-foundry/src/branch/main/PtH-Vocation/system.json"
+    "manifest": "https://git.kinejames.net/pkwiatek6/pth-foundry/src/branch/main/pth/system.json"
 
 
 }
