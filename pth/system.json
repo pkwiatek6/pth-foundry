@@ -4,8 +4,7 @@
     "description": "A port of the Princess the Hopeful: Vocation Edition TTRPG to foundry",
     "version": "1.0.0",
     "compatability": {
-        "minimum": 12,
-        "verified": 12
+        "minimum": 12
     },
     "authors": [
         {
@@ -37,7 +36,23 @@
             "path": "lang/en.json"
         }
     ],
-    "socket": true,
+    "documentTypes": {
+        "Item": {
+            "charm": {
+                "label": "Charm",
+                "sheetClass": "pth.CharmSheet",
+                "documentClass": "pth.CharmDocument"
+            },
+            "Actor": {
+                "character": {
+                    "label": "Character",
+                    "sheetClass": "pth.CharacterSheet",
+                    "documentClass": "pth.CharacterActor"
+                }
+            }
+        }
+    },
+    "socket": false,
     "initiative": "1d10",
     "grid": {
         "distance": 1,
