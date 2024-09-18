@@ -43,6 +43,13 @@
                 "label": "Charm",
                 "sheetClass": "pth.CharmSheet",
                 "documentClass": "pth.CharmDocument"
+            },
+            "Actor": {
+                "character": {
+                    "label": "Character",
+                    "sheetClass": "pth.CharacterSheet",
+                    "documentClass": "pth.CharacterActor"
+                }
             }
         }
     },
