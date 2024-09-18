@@ -37,7 +37,7 @@
         }
     },
     "socket": true,
-    "initiative": "1d10 + @abilities.dexterity.value + @abilities.composure.value + @bonuses.initiative",
+    "initiative": "1d10",
     "grid": {
         "distance": 1,
         "units": "yd"
