@@ -7,32 +7,42 @@
         "minimum": 12,
         "verified": 12
     },
-    "authors": [{
-        "name":"Peter Kwiatek",
-        "url" : "",
-        "email": "",
-        "discord": ""
-    }],
-    "esmodules": ["module/pth.mjs"],
-    "styles": ["styles/system-styles.css"],
-    "packs": [{
-        "name": "charms",
-        "label": "Charms",
-        "system":"pth",
-        "type": "Item",
-        "path": "packs/charms.db"
-    }],
-    "languages": [{
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-    }],
+    "authors": [
+        {
+            "name": "Peter Kwiatek",
+            "url": "",
+            "email": "",
+            "discord": ""
+        }
+    ],
+    "esmodules": [
+        "module/pth.mjs"
+    ],
+    "styles": [
+        "styles/system-styles.css"
+    ],
+    "packs": [
+        {
+            "name": "charms",
+            "label": "Charms",
+            "system": "pth",
+            "type": "Item",
+            "path": "packs/charms.db"
+        }
+    ],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
     "documentTypes": {
         "Item": {
             "charm": {
                 "label": "Charm",
                 "sheetClass": "pth.CharmSheet",
-                "documentClass":"pth.CharmDocument"
+                "documentClass": "pth.CharmDocument"
             }
         }
     },
@@ -44,6 +54,4 @@
     },
     "url": "https://git.kinejames.net/pkwiatek6/pth-foundry",
     "manifest": "https://git.kinejames.net/pkwiatek6/pth-foundry/raw/branch/main/pth/system.json"
-
-
 }
