@@ -37,22 +37,6 @@
             "path": "lang/en.json"
         }
     ],
-    "documentTypes": {
-        "Item": {
-            "charm": {
-                "label": "Charm",
-                "sheetClass": "pth.CharmSheet",
-                "documentClass": "pth.CharmDocument"
-            },
-            "Actor": {
-                "character": {
-                    "label": "Character",
-                    "sheetClass": "pth.CharacterSheet",
-                    "documentClass": "pth.CharacterActor"
-                }
-            }
-        }
-    },
     "socket": true,
     "initiative": "1d10",
     "grid": {
