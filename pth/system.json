@@ -58,6 +58,6 @@
         "distance": 1,
         "units": "yd"
     },
-    "url": "https://git.kinejames.net/pkwiatek6/pth-foundry/src/branch/main/pth",
-    "manifest": "https://git.kinejames.net/pkwiatek6/pth-foundry/raw/branch/main/pth/system.json"
+    "url": "https://github.com/pkwiatek6/pth-foundry/tree/main/pth",
+    "manifest": "https://raw.githubusercontent.com/pkwiatek6/pth-foundry/main/pth/system.json"
 }
