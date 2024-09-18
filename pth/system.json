@@ -3,7 +3,7 @@
     "title": "Princess the Hopeful: Vocation Edition",
     "description": "A port of the Princess the Hopeful: Vocation Edition TTRPG to foundry",
     "version": "1.0.0",
-    "compatability": {
+    "compatibility": {
         "minimum": 12
     },
     "authors": [
