@@ -13,7 +13,7 @@
         "email": "",
         "discord": ""
     }],
-    "esmodules": ["pth.mjs"],
+    "esmodules": ["module/pth.mjs"],
     "styles": ["styles/system-styles.css"],
     "packs": [{
         "name": "charms",
