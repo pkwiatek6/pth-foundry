@@ -1,0 +1,56 @@
+<form>
+    <div class="form-group">
+      <label>Charm Name:</label>
+      <input type="text" name="name" value="{{name}}" />
+    </div>
+  
+    <div class="form-group">
+      <label>Type of Charm:</label>
+      <select name="data.type">
+        <option value="basic" {{#ifEquals data.type 'basic'}}selected{{/ifEquals}}>Basic</option>
+        <option value="advanced" {{#ifEquals data.type 'advanced'}}selected{{/ifEquals}}>Advanced</option>
+        <option value="master" {{#ifEquals data.type 'master'}}selected{{/ifEquals}}>Master</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label>Invocation:</label>
+      <input type="text" name="data.invocation" value="{{data.invocation}}" placeholder="Optional"/>
+    </div>
+  
+    <div class="form-group">
+      <label>XP Cost:</label>
+      <input type="number" name="data.xpCost" value="{{data.xpCost}}" disabled />
+    </div>
+  
+    <div class="form-group">
+      <label>Action Cost:</label>
+      <input type="text" name="data.actionCost" value="{{data.actionCost}}" />
+    </div>
+  
+    <div class="form-group">
+      <label>Dice Pool:</label>
+      <input type="text" name="data.dicePool" value="{{data.dicePool}}" placeholder="Optional" />
+    </div>
+  
+    <div class="form-group">
+      <label>Cost (Wisp):</label>
+      <input type="number" name="data.cost.wisp" value="{{data.cost.wisp}}" />
+    </div>
+  
+    <div class="form-group">
+      <label>Cost (Willpower):</label>
+      <input type="number" name="data.cost.willpower" value="{{data.cost.willpower}}" />
+    </div>
+  
+    <div class="form-group">
+      <label>Duration:</label>
+      <input type="text" name="data.duration" value="{{data.duration}}" placeholder="Optional"/>
+    </div>
+  
+    <div class="form-group">
+      <label>Upgrades:</label>
+      <textarea name="data.upgrades">{{data.upgrades}}</textarea>
+    </div>
+  </form>
+  
