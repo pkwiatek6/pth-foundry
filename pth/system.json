@@ -1,0 +1,53 @@
+{
+  "id": "pth",
+  "type": "system",
+  "title": "Princess the Hopeful: Vocation Edition",
+  "description": "A port of the Princess the Hopeful: Vocation Edition TTRPG to Foundry VTT.",
+  "version": "1.0.0",
+
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12.331"
+  },
+
+  "authors": [
+    { "name": "Peter Kwiatek" }
+  ],
+
+  "esmodules": ["module/pth.mjs"],
+  "styles": ["styles/system-styles.css"],
+
+  "packs": [
+    {
+      "name": "charms",
+      "label": "Charms",
+      "system": "pth",
+      "type": "Item",
+      "path": "packs/charms.db"
+    }
+  ],
+
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+
+  "documentTypes": {
+    "Actor": ["character"],
+    "Item": ["charm"]
+  },
+
+  "sheetClasses": {
+    "Actor": {
+      "character": "pth.CharacterSheet"
+    },
+    "Item": {
+      "charm": "pth.CharmSheet"
+    }
+  },
+
+  "grid": { "distance": 1, "units": "yd" },
+
+  "url": "https://github.com/pkwiatek6/pth-foundry",
+  "manifest": "https://raw.githubusercontent.com/pkwiatek6/pth-foundry/main/pth/system.json",
+  "download": "https://github.com/pkwiatek6/pth-foundry/releases/download/v1.0.0/pth.zip"
+}
