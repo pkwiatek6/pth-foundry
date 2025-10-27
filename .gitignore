@@ -43,6 +43,13 @@ modules/
 pth/packs/*
 !pth/packs/*.db
 
+# Ignore built LevelDB packs
+packs/charms/*
+
+# Keep JSON sources
+packs/src/**
+
+
 # === Optional system-specific ignores ===
 
 # Example system exports or cache files

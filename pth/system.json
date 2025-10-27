@@ -23,7 +23,7 @@
       "label": "Charms",
       "system": "pth",
       "type": "Item",
-      "path": "packs/charms.db"
+      "path": "packs/charms"
     }
   ],
 
