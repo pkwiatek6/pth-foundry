@@ -1,69 +1,131 @@
-// Define a base actor for your system
+// systems/pth/module/pth.mjs
+
+/* -----------------------------
+ * Documents
+ * ----------------------------- */
+
 class CharacterActor extends Actor {
-    // You can override methods or add custom functionality here
-    prepareData() {
-      super.prepareData();
-  
-      // Example: Initialize custom attributes or modify data
-      const actorData = this.data;
-      actorData.data.bonuses = actorData.data.bonuses || { initiative: 0 };
-    }
-  }
-  
-  // Define the custom actor sheet for characters
-  class CharacterSheet extends ActorSheet {
-    // Specify the template to be used
-    static get defaultOptions() {
-      return mergeObject(super.defaultOptions, {
-        classes: ["pth", "sheet", "actor"],
-        template: "styles/sheets/actors/character-sheet.html",
-        width: 600,
-        height: 600
-      });
-    }
-  
-    // Optionally, override methods to add functionality to the actor sheet
-    getData() {
-      const data = super.getData();
-  
-      // Add custom data or modify the sheet data here
-      return data;
-    }
+  /** v10+: initialize defaults that are part of the stored system data */
+  prepareBaseData() {
+    super.prepareBaseData();
+    // Ensure a bonuses object exists
+    this.system.bonuses ??= {};
+    this.system.bonuses.initiative ??= 0;
   }
 
-// Define the CharmDocument class
+  /** v10+: compute any derived data here (do not persist with update()) */
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    // Example: compute final initiative mod (keep it derived-only)
+    this.system.derived ??= {};
+    this.system.derived.initiativeTotal =
+      (this.system.bonuses?.initiative ?? 0);
+  }
+}
+
 class CharmDocument extends Item {
-    // Your custom document logic here
-    prepareData() {
-        super.prepareData();
-        const itemData = this.data;
+  prepareBaseData() {
+    super.prepareBaseData();
+    // Ensure stable structure
+    this.system.type ??= null; // your charm type taxonomy
+    this.system.cost ??= { wisp: 0, willpower: 0 };
+  }
 
-        // Set XP cost based on the highest dot total of the charm type
-        itemData.xpCost = this.calculateXPCost(itemData.data.type);
+  prepareDerivedData() {
+    super.prepareDerivedData();
+    // Compute (do not persist) an XP cost based on current type
+    const t = this.system.type;
+    this.system.derived ??= {};
+    this.system.derived.xpCost = this.calculateXPCost(t);
+  }
 
-        // Default to no invocation if not specified
-        itemData.invocation = itemData.invocation || null;
+  // Placeholder — replace with your real rules
+  calculateXPCost(type) {
+    // Example mapping
+    const table = {
+      minor: 1,
+      standard: 2,
+      major: 4
+    };
+    return table[type] ?? 0;
+  }
+
+  /** Apply an upgrade and PERSIST changes */
+  async applyUpgrade(upgrade = {}) {
+    // Example: reduce wisp cost. Read current, compute new, then update.
+    if (upgrade.wispCostReduction) {
+      const current = this.system.cost?.wisp ?? 0;
+      const next = Math.max(0, current - upgrade.wispCostReduction);
+      await this.update({ "system.cost.wisp": next });
     }
-    // Custom method to apply upgrades
-    applyUpgrade(upgrade) {
-        // Example of applying an upgrade that alters Wisp cost
-        if (upgrade.wispCostReduction) {
-            this.data.cost.wisp = Math.max(0, this.data.cost.wisp - upgrade.wispCostReduction);
-        }
-
-        // Handle other upgrade types...
-    }
+    // handle other upgrade types...
+  }
 }
-CONFIG.Item.documentClass = CharmDocument;
 
-// Define the CharmSheet class
+/* -----------------------------
+ * Sheets
+ * ----------------------------- */
+
+class CharacterSheet extends ActorSheet {
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["pth", "sheet", "actor"],
+      template: "systems/pth/templates/actor/character-sheet.hbs",
+      width: 600,
+      height: 600,
+      tabs: [{ navSelector: ".tabs", contentSelector: ".sheet-body", initial: "main" }]
+    });
+  }
+
+  async getData(options) {
+    const data = await super.getData(options);
+    // expose helpers / derived props if you want
+    return data;
+  }
+}
+
 class CharmSheet extends ItemSheet {
-    // Your custom sheet logic here
-}
-// Register the Actor and Sheet with Foundry
-Items.unregisterSheet("core", ItemSheet);
-Items.registerSheet("pth", CharmSheet, { types: ["charm"], makeDefault: true });
+  static get defaultOptions() {
+    return foundry.utils.mergeObject(super.defaultOptions, {
+      classes: ["pth", "sheet", "item", "charm"],
+      template: "systems/pth/templates/item/charm-sheet.hbs",
+      width: 560,
+      height: 480
+    });
+  }
 
-Actors.unregisterSheet("core", ActorSheet);
-Actors.registerSheet("pth", CharacterSheet, { makeDefault: true });
-CONFIG.Actor.documentClass = CharacterActor;
+  async getData(options) {
+    const data = await super.getData(options);
+    return data;
+  }
+}
+
+/* -----------------------------
+ * System init / registration
+ * ----------------------------- */
+
+Hooks.once("init", () => {
+  console.log("pth | Initializing Princess the Hopeful system");
+
+  // Initiative (manifest key is legacy; do it in code for v10+)
+  CONFIG.Combat.initiative = { formula: "1d10" };
+
+  // Register custom document classes
+  CONFIG.Actor.documentClass = CharacterActor;
+  CONFIG.Item.documentClass = CharmDocument;
+
+  // Register sheets
+  Actors.unregisterSheet("core", ActorSheet);
+  Actors.registerSheet("pth", CharacterSheet, {
+    types: ["character"], // make sure system.json declares this Actor type
+    makeDefault: true,
+    label: "PTH Character Sheet"
+  });
+
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("pth", CharmSheet, {
+    types: ["charm"], // make sure system.json declares this Item type
+    makeDefault: true,
+    label: "PTH Charm Sheet"
+  });
+});
