@@ -38,13 +38,8 @@ systems/
 worlds/
 modules/
 
-# === Compendium handling ===
-# Ignore everything in packs/charms except the actual charms.db file
-pth/packs/*
-!pth/packs/*.db
-
 # Ignore built LevelDB packs
-packs/charms/*
+pth/packs/charms/**
 
 # Keep JSON sources
 packs/src/**
