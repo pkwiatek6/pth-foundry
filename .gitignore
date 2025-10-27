@@ -40,8 +40,8 @@ modules/
 
 # === Compendium handling ===
 # Ignore everything in packs/charms except the actual charms.db file
-pth/packs/charms/*
-!pth/packs/charms/charms.db
+pth/packs/*
+!pth/packs/*.db
 
 # === Optional system-specific ignores ===
 
