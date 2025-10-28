@@ -1,28 +1,27 @@
 import { PTHActor } from "./module/documents/actor.mjs";
 import { PTHActorSheet } from "./module/sheets/actor-sheet.mjs";
-import { PTHCharacterDataModel } from "./data/character-data.mjs";
+import { PTHCharacterDataModel } from "./module/data/character-data.mjs";
 
-Hooks.once("init", () => {
+Hooks.once("init", function () {
   console.log("PTH | Initializing system");
 
-  game.pth = {
-    PTHActor
-  };
   // Your document class (keep this)
   CONFIG.Actor.documentClass = PTHActor;
 
-  // Unregister the core v1 sheet (same pattern dnd5e uses)
-  DocumentSheetConfig.unregisterSheet(Actor, "core", foundry.appv1.sheets.ActorSheet);
+  CONFIG.Actor.dataModels = CONFIG.Actor.dataModels || {};
+  CONFIG.Actor.dataModels.character = PTHCharacterDataModel;
+
+  DocumentSheetConfig.unregisterSheet(Actor, "core", ActorSheet);
 
   // Register your sheet for the "character" type
   DocumentSheetConfig.registerSheet(Actor, "pth", PTHActorSheet, {
     types: ["character"],
-    makeDefault: true,
-    label: "PTH.CharacterSheet"
+    label: "PTH.CharacterSheet",
+    makeDefault: true
   });
 });
 
-Hooks.once("ready", () => {
+Hooks.once("ready", function () {
   console.log("PTH | ready docClass:", CONFIG.Actor.documentClass?.name);
   if (CONFIG.Actor.documentClass?.name !== "PTHActor") {
     console.warn("PTH | docClass was overwritten; restoring.");

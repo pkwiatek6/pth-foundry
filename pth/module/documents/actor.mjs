@@ -2,8 +2,8 @@ export class PTHActor extends Actor {
     /** @override */
     prepareBaseData() {
         super.prepareBaseData();
-        this.system.bonuses ??= {};
-        this.system.bonuses.initiative ??= 0;
+        const attrs = this.system.attributes;
+        //Example of derived stats
     }
 
     /** @override */
