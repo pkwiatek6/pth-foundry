@@ -1,8 +1,9 @@
 {
-    "name": "pth",
-    "label": "Princess the Hopeful: Vocation Edition",
-    "type": "system",
-    "system": true,
-    "path": "systems/pth"
+  "Actor": {
+    "character": {
+      "bonuses": {
+        "initiative": 0
+      }
+    }
   }
-  
+}

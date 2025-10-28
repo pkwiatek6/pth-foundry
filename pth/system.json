@@ -1,53 +1,26 @@
 {
   "id": "pth",
+  "title": "Princess: The Hopeful (WIP)",
+  "description": "WIP system scaffold for Foundry VTT v12.",
+  "version": "0.0.1",
   "type": "system",
-  "title": "Princess the Hopeful: Vocation Edition",
-  "description": "A port of the Princess the Hopeful: Vocation Edition TTRPG to Foundry VTT.",
-  "version": "1.0.0",
-
-  "compatibility": {
-    "minimum": "12",
-    "verified": "12.331"
-  },
-
-  "authors": [
-    { "name": "Peter Kwiatek" }
-  ],
-
-  "esmodules": ["module/pth.mjs"],
-  "styles": ["styles/system-styles.css"],
-
-  "packs": [
-    {
-      "name": "charms",
-      "label": "Charms",
-      "system": "pth",
-      "type": "Item",
-      "path": "packs/charms"
-    }
-  ],
-
-  "languages": [
-    { "lang": "en", "name": "English", "path": "lang/en.json" }
-  ],
+  "authors": [{ "name": "Peter Kwiatek" }],
+  "compatibility": { "minimum": "12", "verified": "12" },
 
   "documentTypes": {
-    "Actor": ["character"],
-    "Item": ["charm"]
+    "Actor": ["character"]
   },
 
-  "sheetClasses": {
-    "Actor": {
-      "character": "pth.CharacterSheet"
-    },
-    "Item": {
-      "charm": "pth.CharmSheet"
+  "esmodules": ["module/pth.mjs"],
+  "styles": ["styles/system.css", "styles/sheets/actors.css"],
+  "packs": [
+    {
+      "type": "Item",
+      "name": "charms",
+      "label": "Charms",
+      "path": "packs/charms.db",
+      "private": false,
+      "system": "pth"
     }
-  },
-
-  "grid": { "distance": 1, "units": "yd" },
-
-  "url": "https://github.com/pkwiatek6/pth-foundry",
-  "manifest": "https://raw.githubusercontent.com/pkwiatek6/pth-foundry/main/pth/system.json",
-  "download": "https://github.com/pkwiatek6/pth-foundry/releases/download/v1.0.0/pth.zip"
+  ]
 }
