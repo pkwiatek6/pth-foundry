@@ -1,26 +1,28 @@
 {
-  "id": "pth",
-  "title": "Princess: The Hopeful (WIP)",
-  "description": "WIP system scaffold for Foundry VTT v12.",
-  "version": "0.0.1",
-  "type": "system",
-  "authors": [{ "name": "Peter Kwiatek" }],
-  "compatibility": { "minimum": "12", "verified": "12" },
-
-  "documentTypes": {
-    "Actor": ["character"]
-  },
-
-  "esmodules": ["module/pth.mjs"],
-  "styles": ["styles/system.css", "styles/sheets/actors.css"],
-  "packs": [
-    {
-      "type": "Item",
-      "name": "charms",
-      "label": "Charms",
-      "path": "packs/charms.db",
-      "private": false,
-      "system": "pth"
-    }
-  ]
+    "id": "pth",
+    "title": "Princess: The Hopeful (WIP)",
+    "description": "WIP system scaffold for Foundry VTT v12.",
+    "version": "0.0.1",
+    "type": "system",
+    "authors": [
+        {
+            "name": "Peter Kwiatek"
+        }
+    ],
+    "compatibility": {
+        "minimum": "12",
+        "verified": "12"
+    },
+    "esmodules": [
+        "pth.mjs"
+    ],
+    "documentTypes": {
+        "Actor": {
+            "character": {}
+        }
+    },
+    "styles": [
+        "styles/system.css",
+        "styles/sheets/actors.css"
+    ]
 }
