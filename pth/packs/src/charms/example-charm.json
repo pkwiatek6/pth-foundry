@@ -1,0 +1,13 @@
+{
+    "name": "Example Charm",
+    "type": "charm",
+    "img": "icons/svg/book.svg",
+    "system": {
+        "type": "standard",
+        "cost": {
+            "wisp": 1,
+            "willpower": 0
+        },
+        "bonuses": {}
+    }
+}
