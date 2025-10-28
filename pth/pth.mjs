@@ -1,37 +1,32 @@
 import { PTHActor } from "./module/documents/actor.mjs";
 import { PTHActorSheet } from "./module/sheets/actor-sheet.mjs";
+import { PTHCharacterDataModel } from "./data/character-data.mjs";
 
 Hooks.once("init", () => {
   console.log("PTH | Initializing system");
 
-  // Register the custom document class
+  game.pth = {
+    PTHActor
+  };
+  // Your document class (keep this)
   CONFIG.Actor.documentClass = PTHActor;
-  // Register your custom sheet
-  Actors.registerSheet("pth", PTHActorSheet, {
-    typea:["character"],
+
+  // Unregister the core v1 sheet (same pattern dnd5e uses)
+  DocumentSheetConfig.unregisterSheet(Actor, "core", foundry.appv1.sheets.ActorSheet);
+
+  // Register your sheet for the "character" type
+  DocumentSheetConfig.registerSheet(Actor, "pth", PTHActorSheet, {
+    types: ["character"],
     makeDefault: true,
-    label: "PTH Actor Sheet"
+    label: "PTH.CharacterSheet"
   });
 });
 
-Hooks.on("preCreateActor", (doc, data, options, userId) => {
-  console.group("PTH | preCreateActor debug");
-  console.log("Incoming data:", foundry.utils.deepClone(data));
-  console.log("Doc source before:", foundry.utils.deepClone(doc._source));
-  console.log("Options:", options);
-  console.log("User:", userId);
-  if (!data.type) {
-    console.warn("Missing type — setting to 'character'");
-    doc.updateSource({ type: "character" });
+Hooks.once("ready", () => {
+  console.log("PTH | ready docClass:", CONFIG.Actor.documentClass?.name);
+  if (CONFIG.Actor.documentClass?.name !== "PTHActor") {
+    console.warn("PTH | docClass was overwritten; restoring.");
+    CONFIG.Actor.documentClass = PTHActor;
+    console.log("PTH | restored docClass:", CONFIG.Actor.documentClass?.name);
   }
-  console.log("Doc source after:", foundry.utils.deepClone(doc._source));
-  console.groupEnd();
-});
-
-Hooks.on("createActor", (doc, options, userId) => {
-  console.group("PTH | createActor debug");
-  console.log("Created Actor:", doc.name);
-  console.log("Actor type:", doc.type);
-  console.log("Actor system data:", doc.system);
-  console.groupEnd();
 });

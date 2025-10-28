@@ -1,17 +1,21 @@
 export class PTHActorSheet extends ActorSheet {
-  static get defaultOptions() {
-    return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["pth", "sheet", "actor"],
-      template: "systems/pth/templates/actors/character-sheet.hbs",
-      width: 600,
-      height: 400,
-      resizable: true
-    });
-  }
-
-  getData(options = {}) {
-    const context = super.getData(options);
-    context.system = this.actor.system; // expose for template
-    return context;
-  }
+    /** @override */
+    static get defaultOptions() {
+        return foundry.utils.mergeObject(super.defaultOptions, {
+            classes: ["pth", "sheet", "actor"],
+            width: 700,
+            height: 600,
+            resizable: true,
+            template: "systems/pth/templates/actor/character-sheet.hbs"
+        });
+    }
+    /** @override */
+    get template() {
+        return "systems/pth/templates/actor/character-sheet.hbs";
+    }
+    getData(options = {}) {
+        const data = super.getData(options);
+        data.system = this.actor.system;
+        return data;
+    }
 }

@@ -31,13 +31,6 @@ desktop.ini
 *.swp
 ~$*
 
-# Local development links (don’t commit the symlink target)
-# NOTE: This only matters if you ever link this folder inside another repo
-Data/
-systems/
-worlds/
-modules/
-
 # Ignore built LevelDB packs
 pth/packs/charms/**
 

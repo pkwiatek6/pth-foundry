@@ -1,8 +1,14 @@
-<section class="pth sheet actor">
-  <header class="sheet-header">
-    <h1>{{actor.name}}</h1>
-  </header>
-  <section class="sheet-body">
-    <div>Initiative Bonus: {{system.bonuses.initiative}}</div>
-  </section>
+<div>Test text</div>
+<section class="sheet-body">
+  <h2>Attributes</h2>
+  <div class="attr-grid">
+    <h3>Physical</h3>
+    <p>Strength: {{system.attributes.physical.mundane.strength}}</p>
+    <p>Dexterity: {{system.attributes.physical.mundane.dexterity}}</p>
+    <p>Stamina: {{system.attributes.physical.mundane.stamina}}</p>
+
+    <h3>Health / Willpower</h3>
+    <p>Health: {{system.health}}</p>
+    <p>Willpower: {{system.willpower}}</p>
+  </div>
 </section>
